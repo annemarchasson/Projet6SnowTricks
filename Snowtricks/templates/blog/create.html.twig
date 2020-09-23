@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% form_theme formArticle 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+
+    <h1>Création d'une nouvelle figure</h1>
+
+    {{ form_start(formArticle) }}
+
+    {{ form_widget(formArticle) }}
+
+    <button type="submit" class="btn btn-success"> Ajouter </button>
+    {{ form_end(formArticle) }}
+
+{% endblock %}
