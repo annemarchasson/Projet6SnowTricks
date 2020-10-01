@@ -3,13 +3,27 @@
 
 {% block body %}
 
-    <h1>Création d'une nouvelle figure</h1>
+    <h1>
+        {% if editMode %}
+        Modification d'une figure
+        {% else %}
+        Création d'une nouvelle figure
+        {% endif %}
+    </h1>
 
     {{ form_start(formArticle) }}
 
-    {{ form_widget(formArticle) }}
+    {{ form_row(formArticle.title, {'attr':{'placeholder': "titre de la figure "}}) }}
+    {{ form_row(formArticle.description, {'attr':{'placeholder': "description de la figure"}}) }}
 
-    <button type="submit" class="btn btn-success"> Ajouter </button>
+
+    <button type="submit" class="btn btn-success">
+        {% if editMode %}
+        Modifier
+        {% else %}
+        Ajouter
+        {% endif %}
+    </button>
     {{ form_end(formArticle) }}
 
 {% endblock %}
