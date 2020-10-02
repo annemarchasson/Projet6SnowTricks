@@ -6,6 +6,10 @@ use App\Repository\ArticleRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
+
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */
@@ -48,6 +52,20 @@ class Article
      * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="articles",cascade={"persist"})
+     */
+    private $image;
+
+    public function __construct()
+    {
+        $this->image = new ArrayCollection();
+    }
+
+
+
 
     public function getId(): ?int
     {
@@ -102,4 +120,40 @@ class Article
 
         return $this;
     }
+
+
+
+
+
+    /**
+     * @return Collection|Image[]
+     */
+    public function getImage(): Collection
+    {
+        return $this->image;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->image->contains($image)) {
+            $this->image[] = $image;
+            $image->setArticles($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->image->contains($image)) {
+            $this->image->removeElement($image);
+            // set the owning side to null (unless already changed)
+            if ($image->getArticles() === $this) {
+                $image->setArticles(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

@@ -12,6 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+
 class FigureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -22,6 +23,12 @@ class FigureType extends AbstractType
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'title'
+            ])
+            ->add('image', FileType::class,[
+                'label' => false,
+                'multiple' => true,
+                'mapped' => false,
+                'required' => false
             ])
         ;
     }

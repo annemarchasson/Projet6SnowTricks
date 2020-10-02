@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ObjectManager;
 use App\Entity\Article;
+use App\Entity\Image;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -62,6 +63,7 @@ class BlogController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             if(!$article->getId()) {
                 $article->setCreatedAt(new \DateTime());
+
             }
 
             $em->persist($article);
