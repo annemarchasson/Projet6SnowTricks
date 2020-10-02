@@ -6,6 +6,18 @@
             à {{ article.createdAt | date('H:i') }} dans la catégorie
             {{ article.category.title }}
         </div>
+
+
+        <h2>Images</h2>
+        {% for image in article.image %}
+            <div>
+                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
+            </div>
+        {% endfor %}
+
+
+
+        <h2>Description</h2>
         <div class="content">
             {{ article.description | raw }}
         </div>

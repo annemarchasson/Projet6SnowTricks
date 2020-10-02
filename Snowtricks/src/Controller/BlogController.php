@@ -63,7 +63,24 @@ class BlogController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()){
             if(!$article->getId()) {
                 $article->setCreatedAt(new \DateTime());
+                $image = $form->get('image')->getData();
 
+                // On boucle sur les images
+                foreach($image as $image){
+                    // On génère un nouveau nom de fichier
+                    $fichier = md5(uniqid()).'.'.$image->guessExtension();
+
+                    // On copie le fichier dans le dossier uploads
+                    $image->move(
+                        $this->getParameter('images_directory'),
+                        $fichier
+                    );
+
+                    // On crée l'image dans la base de données
+                    $img = new Image();
+                    $img->setName($fichier);
+                    $article->addImage($img);
+                }
             }
 
             $em->persist($article);
