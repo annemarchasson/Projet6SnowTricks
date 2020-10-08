@@ -3,9 +3,24 @@
     <article>
         <h2>{{ article.title }}</h2>
         <div class="metadata">Ecrit le {{article.createdAt | date('d/m/Y') }}
-            à {{ article.createdAt | date('H:i') }} catégorie A</div>
+            à {{ article.createdAt | date('H:i') }} dans la catégorie
+            {{ article.category.title }}
+        </div>
+
+
+        <h2>Images</h2>
+        {% for image in article.image %}
+            <div>
+                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
+            </div>
+        {% endfor %}
+
+
+
+        <h2>Description</h2>
         <div class="content">
-            <img src="{{ article.image }}" alt="">
             {{ article.description | raw }}
+        </div>
+
     </article>
 {% endblock body %}
