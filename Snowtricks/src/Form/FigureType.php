@@ -31,6 +31,7 @@ class FigureType extends AbstractType
                 'required' => false
             ])
             ->add('video')
+        //blabla
         ;
     }
 
