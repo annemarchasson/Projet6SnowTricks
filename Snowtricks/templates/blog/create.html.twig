@@ -19,6 +19,11 @@
 
     <h2>Images</h2>
     {{ form_row(formArticle.image, {'attr':{'placeholder': "télécharger image"}} ) }}
+    <button type="submit" class="btn btn-success">Ajouter des images</button>
+
+    <h2>Ajouter une video :</h2>
+    {{ form_row(formArticle.video, {'attr': {'placeholder': "url video"}} ) }}
+    <button type="submit" class="btn btn-success">Ajouter la Video</button>
 
 
     <button type="submit" class="btn btn-success">
@@ -28,6 +33,9 @@
         Ajouter
         {% endif %}
     </button>
+
+
+
     {{ form_end(formArticle) }}
 
 {% endblock %}

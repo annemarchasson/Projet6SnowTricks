@@ -22,5 +22,15 @@
             {{ article.description | raw }}
         </div>
 
+
+        <h2>Vidéo</h2>
+        <div>
+            {% for video in article.video %}
+                <div class="col-sm-4 col">
+                    <embed src="{{ video.link }}"></embed>
+                </div>
+            {% endfor %}
+        </div>
+
     </article>
 {% endblock body %}

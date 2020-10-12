@@ -7,8 +7,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ObjectManager;
+
 use App\Entity\Article;
 use App\Entity\Image;
+use App\Entity\Video;
+
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -65,6 +68,7 @@ class BlogController extends AbstractController
                 $article->setCreatedAt(new \DateTime());
                 $image = $form->get('image')->getData();
 
+
                 // On boucle sur les images
                 foreach($image as $image){
                     // On génère un nouveau nom de fichier
@@ -80,6 +84,8 @@ class BlogController extends AbstractController
                     $img = new Image();
                     $img->setName($fichier);
                     $article->addImage($img);
+
+
                 }
             }
 

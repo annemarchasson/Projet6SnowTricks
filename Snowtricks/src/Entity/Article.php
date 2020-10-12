@@ -65,6 +65,11 @@ class Article
     }
 
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="articles", orphanRemoval=true)
+     */
+    private $video;
+
 
 
     public function getId(): ?int
@@ -156,4 +161,37 @@ class Article
         return $this;
     }
 
+
+
+
+    /**
+     * @return Collection|Video[]|null
+     */
+    public function getVideo(): ?Collection
+    {
+        return $this->video;
+    }
+
+    public function addVideo(Video $video): self
+    {
+        if (!$this->video->contains($video)) {
+            $this->video[] = $video;
+            $video->setArticles($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideo(Video $video): self
+    {
+        if ($this->video->contains($video)) {
+            $this->video->removeElement($video);
+            // set the owning side to null (unless already changed)
+            if ($video->getArticles() === $this) {
+                $video->setArticles(null);
+            }
+        }
+
+        return $this;
+    }
 }
