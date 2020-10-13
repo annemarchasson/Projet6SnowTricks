@@ -59,17 +59,21 @@ class Article
      */
     private $image;
 
-    public function __construct()
-    {
-        $this->image = new ArrayCollection();
-    }
+
 
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="articles", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Video", mappedBy="articles", orphanRemoval=true, cascade={"persist"})
      */
     private $video;
 
+
+
+    public function __construct()
+    {
+        $this->image = new ArrayCollection();
+        $this->video = new ArrayCollection();
+    }
 
 
     public function getId(): ?int

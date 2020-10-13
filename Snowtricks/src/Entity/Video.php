@@ -25,12 +25,11 @@ class Video
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Url()
      */
     private $link;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Article::class)
+     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="videos")
      * @ORM\JoinColumn(nullable=false)
      */
     private $articles;

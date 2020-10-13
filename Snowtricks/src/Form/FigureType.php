@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\Category;
+use App\Entity\Video;
 use App\Entity\Image;
+use App\Form\VideoType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -14,6 +16,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
 class FigureType extends AbstractType
@@ -38,18 +41,23 @@ class FigureType extends AbstractType
                 'mapped' => false,
                 'required' => false
             ])
-            ->add('video', UrlType::class, [
-                'required' => false,
-                'mapped' => false,
-                'label' => false,
+            ->add('video', CollectionType::class, [
+                'entry_type' => VideoType::class,
+                'label' => false
             ])
+
+            //->add('video', TextType::class, [
+            //    'required' => false,
+            //   'mapped' => false,
+            //    'label' => false,
+            //])
 
         ;
     }
 
 
 
-//->add('linkUploaded', CollectionType::class, [
+//->add('video', CollectionType::class, [
 //                'entry_type' => UrlType::class,
 //                'entry_options' => [
 //                    'attr' => [ 'class' => 'movies-box' ],

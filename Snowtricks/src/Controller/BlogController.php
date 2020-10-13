@@ -57,10 +57,6 @@ class BlogController extends AbstractController
 
         }
 
-        //$form = $this->createFormBuilder($article)
-        //           -> add('title')
-        //           -> add('description')
-        //           ->getForm();
         $form = $this->createForm(FigureType::class, $article);
 
         // analyse la requete http
@@ -74,6 +70,8 @@ class BlogController extends AbstractController
 
                 // alors création d'une date
                 $article->setCreatedAt(new \DateTime());
+
+                //récupération image
                 $image = $form->get('image')->getData();
 
 
@@ -93,6 +91,12 @@ class BlogController extends AbstractController
                     $img->setName($fichier);
                     $article->addImage($img);
 
+                }
+
+                foreach($article->getVideo() as $video)
+                {
+                    $video->setArticles($article);
+                    $em->persist($video);
                 }
 
             }
