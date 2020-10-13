@@ -15,6 +15,7 @@ use App\Entity\Video;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+
 use App\Form\FigureType;
 
 class BlogController extends AbstractController
@@ -53,6 +54,7 @@ class BlogController extends AbstractController
 
         if(!$article){
             $article = new Article();
+
         }
 
         //$form = $this->createFormBuilder($article)
@@ -61,10 +63,16 @@ class BlogController extends AbstractController
         //           ->getForm();
         $form = $this->createForm(FigureType::class, $article);
 
+        // analyse la requete http
         $form->handleRequest($request);
 
+        // si article soumis et valide
         if ($form->isSubmitted() && $form->isValid()){
+
+            // et qu'il n'existe pas déjà, n'a déjà pas d'ID
             if(!$article->getId()) {
+
+                // alors création d'une date
                 $article->setCreatedAt(new \DateTime());
                 $image = $form->get('image')->getData();
 
@@ -85,22 +93,31 @@ class BlogController extends AbstractController
                     $img->setName($fichier);
                     $article->addImage($img);
 
-
                 }
+
             }
 
             $em->persist($article);
+            // on envoie les données sur la database
             $em->flush();
 
             return $this->redirectToRoute('blog_show', ['id' =>$article->getId()]);
 
         }
+
+        //pour afficher le formulaire
         return $this->render('blog/create.html.twig', [
             'formArticle' => $form->createView(),
             'editMode' => $article->getId() !==null
 
         ]);
     }
+
+
+
+
+
+
 
 
 

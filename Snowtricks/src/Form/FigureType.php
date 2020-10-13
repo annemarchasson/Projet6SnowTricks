@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 
 class FigureType extends AbstractType
@@ -19,9 +21,14 @@ class FigureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('description')
+            ->add('title', TextType::class, [
+                'label' => false,
+            ])
+            ->add('description', TextType::class, [
+                'label' => false,
+            ])
             ->add('category', EntityType::class, [
+                'label' => false,
                 'class' => Category::class,
                 'choice_label' => 'title'
             ])
@@ -31,8 +38,10 @@ class FigureType extends AbstractType
                 'mapped' => false,
                 'required' => false
             ])
-            ->add('video', TextareaType::class, [
-                'attr' => ['class' => 'video'],
+            ->add('video', UrlType::class, [
+                'required' => false,
+                'mapped' => false,
+                'label' => false,
             ])
 
         ;
@@ -40,7 +49,16 @@ class FigureType extends AbstractType
 
 
 
-
+//->add('linkUploaded', CollectionType::class, [
+//                'entry_type' => UrlType::class,
+//                'entry_options' => [
+//                    'attr' => [ 'class' => 'movies-box' ],
+//                ],
+//                'allow_add' => true,
+//                'allow_delete' => true,
+//                'prototype' => true,
+//                'label' => false,
+//            ])
 
     public function configureOptions(OptionsResolver $resolver)
     {

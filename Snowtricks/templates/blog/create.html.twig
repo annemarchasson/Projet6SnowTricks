@@ -13,28 +13,41 @@
 
     {{ form_start(formArticle) }}
 
+    {{ form_label(formArticle.title, 'Titre') }}
     {{ form_row(formArticle.title, {'attr':{'placeholder': "titre de la figure "}}) }}
+
+    {{ form_label(formArticle.description, 'Description') }}
     {{ form_row(formArticle.description, {'attr':{'placeholder': "description de la figure"}}) }}
+
+    {{ form_label(formArticle.category, 'Catégorie') }}
     {{ form_row(formArticle.category) }}
 
-    <h2>Images</h2>
+    <h2>Ajouter des Images:</h2>
     {{ form_row(formArticle.image, {'attr':{'placeholder': "télécharger image"}} ) }}
-    <button type="submit" class="btn btn-success">Ajouter des images</button>
 
-    <h2>Ajouter une video :</h2>
+    <div>
+    <h2>Ajouter des videos :</h2>
     {{ form_row(formArticle.video, {'attr': {'placeholder': "url video"}} ) }}
     <button type="submit" class="btn btn-success">Ajouter la Video</button>
+    </div>
 
 
+
+
+
+
+
+
+
+    <div>
     <button type="submit" class="btn btn-success">
         {% if editMode %}
-        Modifier
+        Modifier la figure
         {% else %}
-        Ajouter
+        Ajouter la figure
         {% endif %}
     </button>
-
-
+    </div>
 
     {{ form_end(formArticle) }}
 
