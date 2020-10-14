@@ -13,9 +13,6 @@ use App\Entity\Image;
 use App\Entity\Video;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-
 use App\Form\FigureType;
 
 class BlogController extends AbstractController

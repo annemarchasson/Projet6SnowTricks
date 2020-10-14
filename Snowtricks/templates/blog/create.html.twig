@@ -37,6 +37,7 @@
         <h2>Ajouter des videos :</h2>
             {#{{ form_row(formArticle.video, {'attr': {'placeholder': "url video"}} ) }} #}
             <ul class="video" data-prototype="{{ form_widget(formArticle.video.vars.prototype)|e('html_attr') }}">
+            </ul>
         </div>
 
         <div class="figureButton">
@@ -54,5 +55,7 @@
 {% endblock %}
 
 
-
+{% block javascripts %}
+    <script src="../public/js/trick-form.js"></script>
+{% endblock %}
 

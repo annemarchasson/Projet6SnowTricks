@@ -10,11 +10,9 @@ use App\Form\VideoType;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
@@ -49,23 +47,9 @@ class FigureType extends AbstractType
                 'by_reference' => false,
                 'required' => false,
                 'label' => false
-
-
             ])
-
-            //'entry_type' => VideoType::class,
-            //'prototype' => true,
-            //'allow_add' => true,
-            //'allow_delete' => true,
-            //'by_reference' => false,
-            //'required' => false,
-            //'label' => false
         ;
     }
-
-
-
-
 
     public function configureOptions(OptionsResolver $resolver)
     {
