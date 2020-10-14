@@ -93,13 +93,28 @@ class BlogController extends AbstractController
 
                 }
 
-                foreach($article->getVideo() as $video)
-                {
-                    $video->setArticles($article);
-                    $em->persist($video);
+
+                //récupération video
+                $video = $form->get('video')->getData();
+
+                // On boucle sur les videos
+                foreach($video as $video){
+
+                    // On crée la video dans la base de données
+                    $vid = new Video();
+                    $article->addVideo($vid);
                 }
 
+                //foreach($article->getVideo() as $video)
+                //{
+                //   $video->setArticles($article);
+                //   $em->persist($video);
+                //}
+
+
             }
+
+            var_dump($video);
 
             $em->persist($article);
             // on envoie les données sur la database

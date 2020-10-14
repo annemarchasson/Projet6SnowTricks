@@ -1,36 +1,47 @@
 {% extends'base.html.twig' %}
 {% block body %}
     <article>
-        <h2>{{ article.title }}</h2>
-        <div class="metadata">Ecrit le {{article.createdAt | date('d/m/Y') }}
-            à {{ article.createdAt | date('H:i') }} dans la catégorie
-            {{ article.category.title }}
-        </div>
-
-
-        <h2>Images</h2>
-        {% for image in article.image %}
-            <div>
-                <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
-            </div>
-        {% endfor %}
-
-
-
-        <h2>Description</h2>
-        <div class="content">
-            {{ article.description | raw }}
-        </div>
-
-
-        <h2>Vidéo</h2>
-        <div>
-            {% for video in article.video %}
-                <div class="col-sm-4 col">
-                    <embed src="{{ video.link }}"></embed>
+        <div class="figureTitle">
+            <h2>{{ article.title }}</h2>
+                <div class="metadata">Ecrit le {{article.createdAt | date('d/m/Y') }}
+                à {{ article.createdAt | date('H:i') }} dans la catégorie
+                {{ article.category.title }}
                 </div>
-            {% endfor %}
+        </div>
+
+        <div class="figureImage">
+            <h2>Images</h2>
+                {% for image in article.image %}
+                    <div>
+                        <img src="{{ asset('/uploads/'~image.name) }}" alt="" width="150">
+                    </div>
+                {% endfor %}
+        </div>
+
+        <div class="figureDescription">
+            <h2>Description</h2>
+                <div class="content">
+                    {{ article.description | raw }}
+                </div>
+        </div>
+
+        <div class="figureVideo">
+            <h2>Vidéo</h2>
+                <div>
+                    {% for video in article.video %}
+                        <div class="col-sm-4 col">
+                            <embed src="{{ video.link }}"></embed>
+                        </div>
+                    {% endfor %}
+                </div>
         </div>
 
     </article>
+
 {% endblock body %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/trick-form.js') }}"></script>
+{% endblock %}
+
+

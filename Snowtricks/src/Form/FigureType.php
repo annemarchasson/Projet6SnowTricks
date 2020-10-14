@@ -43,30 +43,29 @@ class FigureType extends AbstractType
             ])
             ->add('video', CollectionType::class, [
                 'entry_type' => VideoType::class,
+                'prototype' => true,
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'required' => false,
                 'label' => false
+
+
             ])
 
-            //->add('video', TextType::class, [
-            //    'required' => false,
-            //   'mapped' => false,
-            //    'label' => false,
-            //])
-
+            //'entry_type' => VideoType::class,
+            //'prototype' => true,
+            //'allow_add' => true,
+            //'allow_delete' => true,
+            //'by_reference' => false,
+            //'required' => false,
+            //'label' => false
         ;
     }
 
 
 
-//->add('video', CollectionType::class, [
-//                'entry_type' => UrlType::class,
-//                'entry_options' => [
-//                    'attr' => [ 'class' => 'movies-box' ],
-//                ],
-//                'allow_add' => true,
-//                'allow_delete' => true,
-//                'prototype' => true,
-//                'label' => false,
-//            ])
+
 
     public function configureOptions(OptionsResolver $resolver)
     {

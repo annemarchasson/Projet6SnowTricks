@@ -13,41 +13,46 @@
 
     {{ form_start(formArticle) }}
 
-    {{ form_label(formArticle.title, 'Titre') }}
-    {{ form_row(formArticle.title, {'attr':{'placeholder': "titre de la figure "}}) }}
+        <div class="figureTitle">
+        {{ form_label(formArticle.title, 'Titre') }}
+        {{ form_row(formArticle.title, {'attr':{'placeholder': "titre de la figure "}}) }}
+        </div>
 
-    {{ form_label(formArticle.description, 'Description') }}
-    {{ form_row(formArticle.description, {'attr':{'placeholder': "description de la figure"}}) }}
+        <div class="figureDescription">
+        {{ form_label(formArticle.description, 'Description') }}
+        {{ form_row(formArticle.description, {'attr':{'placeholder': "description de la figure"}}) }}
+        </div>
 
-    {{ form_label(formArticle.category, 'Catégorie') }}
-    {{ form_row(formArticle.category) }}
+        <div class="figurecategory">
+        {{ form_label(formArticle.category, 'Catégorie') }}
+        {{ form_row(formArticle.category) }}
+        </div>
 
-    <h2>Ajouter des Images:</h2>
-    {{ form_row(formArticle.image, {'attr':{'placeholder': "télécharger image"}} ) }}
+        <div class="figureImage">
+        <h2>Ajouter des Images:</h2>
+         {{ form_row(formArticle.image, {'attr':{'placeholder': "télécharger image"}} ) }}
+        </div>
 
-    <div>
-    <h2>Ajouter des videos :</h2>
-    {{ form_row(formArticle.video, {'attr': {'placeholder': "url video"}} ) }}
-    </div>
+        <div class="figureVideo">
+        <h2>Ajouter des videos :</h2>
+            {#{{ form_row(formArticle.video, {'attr': {'placeholder': "url video"}} ) }} #}
+            <ul class="video" data-prototype="{{ form_widget(formArticle.video.vars.prototype)|e('html_attr') }}">
+        </div>
 
-
-
-
-
-
-
-
-
-    <div>
-    <button type="submit" class="btn btn-success">
-        {% if editMode %}
-        Modifier la figure
-        {% else %}
-        Ajouter la figure
-        {% endif %}
-    </button>
-    </div>
+        <div class="figureButton">
+            <button type="submit" class="btn btn-success">
+                {% if editMode %}
+                Modifier la figure
+                {% else %}
+                Ajouter la figure
+                {% endif %}
+            </button>
+        </div>
 
     {{ form_end(formArticle) }}
 
 {% endblock %}
+
+
+
+
